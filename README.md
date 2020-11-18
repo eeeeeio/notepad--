@@ -6,7 +6,7 @@ Boilerplate for a project using Electron, React and Typescript
 Use a package manager of your choice (npm, yarn, etc.) in order to install all dependencies
 
 ```bash
-npm install
+npm install///
 ```
 
 ```bash
