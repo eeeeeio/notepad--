@@ -1,0 +1,6 @@
+{
+  "ignore": [
+    "./src/renderer/template/dist"
+  ],
+  "plugins": ["transform-class-properties","@babel/plugin-transform-runtime"]
+}

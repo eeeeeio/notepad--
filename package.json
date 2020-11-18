@@ -1,0 +1,131 @@
+{
+  "name": "electron-react-typescript",
+  "version": "1.0.0",
+  "description": "An Electron boilerplate including TypeScript, React, Jest and ESLint.",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev": "npm-run-all -p dev:react electron:serve",
+    "dev:electron": "cross-env NODE_ENV=development webpack --config webpack/electron.webpack.js --mode development && npm run start:electron",
+    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack/react.webpack.js --mode development  --presets es2015,stage-2",
+    "electron:serve": "wait-on http-get://localhost:4000/ && npm run dev:electron",
+    "start:electron": "electron .",
+    "build": "npm-run-all build:electron build:react",
+    "build:run": "npm-run-all build start:electron",
+    "build:electron": "webpack --config webpack/electron.webpack.js",
+    "build:react": "webpack --config webpack/react.webpack.js",
+    "package": "npm-run-all build package:dist",
+    "package:dist": "electron-builder --dir"
+  },
+  "keywords": [],
+  "author": "Diego Fernandes <diego.schell.f@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@types/electron-devtools-installer": "^2.2.0",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "@types/styled-components": "^5.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
+    "cz-conventional-changelog": "3.2.0",
+    "electron": "^8.2.2",
+    "electron-builder": "^22.7.0",
+    "electron-devtools-installer": "^3.1.0",
+    "html-webpack-plugin": "^4.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.9.5",
+    "wait-on": "^5.0.1",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "@types/react-router-dom": "^4.3.1",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "asciimath2tex": "^1.1.0",
+    "calls-batch": "^1.1.1",
+    "chokidar": "^3.4.2",
+    "chokidar-watcher": "^1.4.1",
+    "crc-32": "^1.2.0",
+    "critically": "^1.0.0",
+    "diff": "^4.0.1",
+    "electron-context-menu": "^0.12.1",
+    "electron-dialog": "^1.0.0",
+    "electron-store": "^2.0.0",
+    "electron-updater": "^4.0.6",
+    "electron-util": "^0.11.0",
+    "electron-window-state": "^5.0.3",
+    "enex-dump": "^1.4.1",
+    "extract-zip": "^1.6.7",
+    "file-loader": "^6.1.0",
+    "filenamify": "^4.0.0",
+    "gray-matter": "^4.0.2",
+    "html-entities": "^1.2.1",
+    "react-router-dom": "^4.3.1",
+    "babel-preset-es2015": "^6.24.1",
+    "is-absolute-url": "^2.1.0",
+    "is-shallow-equal": "^1.0.1",
+    "js-yaml": "^3.13.1",
+    "katex": "^0.10.1",
+    "laxy": "^1.0.0",
+    "lodash": "^4.17.11",
+    "mermaid": "^8.0.0",
+    "mime-types": "^2.1.24",
+    "mkdirp": "^0.5.1",
+    "monaco-editor": "^0.16.2",
+    "overstated": "^1.1.3",
+    "pify": "^4.0.1",
+    "prismjs": "^1.16.0",
+    "react": "^16.13.1",
+    "react-component-identity": "^1.0.1",
+    "react-component-renderless": "^1.0.2",
+    "react-dom": "^16.13.1",
+    "react-idle-render": "^1.0.0",
+    "react-router-static": "^1.0.0",
+    "react-window": "^1.8.1",
+    "sha1": "^1.1.1",
+    "showdown": "^1.9.0",
+    "string-matches": "^1.1.3",
+    "style-loader": "^0.23.1",
+    "styled-components": "^5.1.1",
+    "terser-webpack-plugin": "^1.1.0",
+    "tiny-glob": "^0.2.6",
+    "url-loader": "^1.1.2"
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "public.app-category.video"
+    },
+    "directories": {
+      "output": "packages"
+    },
+    "files": [
+      "package.json",
+      "dist/**"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-commit": "lint-staged"
+    }
+  }
+}
